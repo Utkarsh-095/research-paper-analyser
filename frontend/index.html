@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Research Paper RAG System</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+          rel="stylesheet" />
+</head>
+<body>
+    <!-- ───────────────────────── sidebar ───────────────────────── -->
+    <div class="app-container">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <i class="fas fa-book-open"></i>
+                <h1>PaperRAG</h1>
+            </div>
+
+            <div class="upload-section">
+                <label for="file-upload" class="upload-btn">
+                    <i class="fas fa-cloud-upload-alt"></i>
+                    Upload Paper
+                </label>
+                <input type="file" id="file-upload" accept=".pdf" hidden />
+                <div id="upload-progress" class="upload-progress hidden">
+                    <div class="progress-bar"><div class="progress-fill"></div></div>
+                    <span class="progress-text">Processing…</span>
+                </div>
+            </div>
+
+            <div class="papers-list" id="papers-list">
+                <h3>Your Papers</h3>
+                <div id="papers-container"></div>
+            </div>
+        </aside>
+
+        <!-- ───────────────────── main content ─────────────────────── -->
+        <main class="main-content">
+
+            <!-- empty state -->
+            <div id="empty-state" class="empty-state">
+                <i class="fas fa-file-pdf"></i>
+                <h2>Welcome to PaperRAG</h2>
+                <p>Upload a research paper (PDF) to get started.<br/>
+                   I'll summarize it and answer your questions.</p>
+            </div>
+
+            <!-- paper view (hidden until a paper is selected) -->
+            <div id="paper-view" class="paper-view hidden">
+
+                <!-- tabs -->
+                <div class="paper-header">
+                    <h2 id="paper-title"></h2>
+                    <div class="paper-meta" id="paper-meta"></div>
+                    <div class="tab-bar">
+                        <button class="tab active" data-tab="summary">
+                            <i class="fas fa-file-alt"></i> Summary
+                        </button>
+                        <button class="tab" data-tab="qa">
+                            <i class="fas fa-comments"></i> Q&amp;A
+                        </button>
+                        <button class="tab" data-tab="findings">
+                            <i class="fas fa-lightbulb"></i> Key Findings
+                        </button>
+                    </div>
+                </div>
+
+                <!-- tab panels -->
+                <div class="tab-content">
+                    <div id="tab-summary" class="tab-panel active">
+                        <div class="summary-content" id="summary-content"></div>
+                    </div>
+
+                    <div id="tab-qa" class="tab-panel">
+                        <div class="chat-container" id="chat-container"></div>
+                        <div class="chat-input-area">
+                            <div class="input-wrapper">
+                                <input type="text" id="question-input"
+                                       placeholder="Ask a question about this paper…" />
+                                <button id="ask-btn" class="ask-btn">
+                                    <i class="fas fa-paper-plane"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="tab-findings" class="tab-panel">
+                        <div class="findings-content" id="findings-content"></div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
